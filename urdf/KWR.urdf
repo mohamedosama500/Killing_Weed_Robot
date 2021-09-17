@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="KWR">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.000269985903504064 -0.00723571787463088 0.233448046416156"
+        rpy="0 0 0" />
+      <mass
+        value="25.3177334234895" />
+      <inertia
+        ixx="2.50336961243006"
+        ixy="0.00895161030313043"
+        ixz="0.0114760535814583"
+        iyy="4.5782566370328"
+        iyz="-0.164386088807838"
+        izz="6.16884819486765" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://KWR/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://KWR/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+<link name="imu_link">
+  <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1" />
+        <inertia  ixx="0.001458333" ixy = "0" ixz = "0"
+            iyy="0.001458333" iyz = "0"
+            izz="0.00125" />
+    </inertial>
+
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+        <cylinder radius="0.05" length="0.025"/>
+        </geometry>
+        <material name="black" />
+    </visual>
+
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <cylinder radius="0.05" length="0.1"/>
+        </geometry>
+    </collision>
+    </link>
+
+	<joint name="joint_sensor_imu" type="fixed">
+		<origin xyz="0.25 0.25 0.29" rpy="0 0 0"/>
+		<parent link="base_link"/>
+		<child link="imu_link"/>
+	  </joint>
+
+<gazebo reference="imu_link">
+    <gravity>true</gravity>
+    <sensor name="imu_sensor" type="imu">
+      <always_on>true</always_on>
+      <update_rate>100</update_rate>
+      <visualize>true</visualize>
+      <topic>__default_topic__</topic>
+      <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+        <topicName>imu</topicName>
+        <bodyName>imu_link</bodyName>
+        <updateRateHZ>10.0</updateRateHZ>
+        <gaussianNoise>0.0</gaussianNoise>
+        <xyzOffset>0 0 0</xyzOffset>
+        <rpyOffset>0 0 0</rpyOffset>
+        <frameName>imu_link</frameName>
+        <initialOrientationAsReference>false</initialOrientationAsReference>
+      </plugin>
+      <pose>0 0 0 0 0 0</pose>
+    </sensor>
+  </gazebo>
+ <link
+    name="Front_right_wheel">
+    <inertial>
+      <origin
+        xyz="-0.0599997729434821 -3.66233705584307E-06 1.58655951598696E-07"
+        rpy="0 0 0" />
+      <mass
+        value="4.76076416185084" />
+      <inertia
+        ixx="0.0553436391434272"
+        ixy="-1.79662109493217E-07"
+        ixz="9.03689593080399E-08"
+        iyy="0.0301932079133706"
+        iyz="5.21014287157303E-08"
+        izz="0.0301931081564576" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://KWR/meshes/Front_right_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://KWR/meshes/Front_right_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Front_right_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0.59508 0.33363 -0.3716"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Front_right_wheel" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="Front_left_wheel_">
+    <inertial>
+      <origin
+        xyz="0.0600000792099205 -3.273228330547E-06 -1.96700302268482E-07"
+        rpy="0 0 0" />
+      <mass
+        value="4.76085895307256" />
+      <inertia
+        ixx="0.0553450246494473"
+        ixy="2.91558388966831E-08"
+        ixz="6.76637370907329E-09"
+        iyy="0.030194010150652"
+        iyz="4.01042837731685E-08"
+        izz="0.0301937462973591" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://KWR/meshes/Front_left_wheel_.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://KWR/meshes/Front_left_wheel_.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Front_left_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.59492 0.33363 -0.3716"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Front_left_wheel_" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="Rear_right_wheel">
+    <inertial>
+      <origin
+        xyz="-0.0493291688771725 2.72396786260565E-06 -1.82557218364465E-06"
+        rpy="0 0 0" />
+      <mass
+        value="4.76085895307256" />
+      <inertia
+        ixx="0.0553450246494474"
+        ixy="2.17266865600176E-08"
+        ixz="-2.0586350976659E-08"
+        iyy="0.0301939076221527"
+        iyz="-1.34717269041666E-07"
+        izz="0.0301938488258585" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://KWR/meshes/Rear_right_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://KWR/meshes/Rear_right_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Rear_right_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0.74508 -0.33137 -0.37"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Rear_right_wheel" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+
+ <transmission name="Rear_right_wheel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Rear_right_wheel_joint">
+      <hardwareInterface> hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="Rear_right_wheel_motor">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
+  <link
+    name="Rear_left_wheel">
+    <inertial>
+      <origin
+        xyz="0.0483053593533643 3.07542179184273E-06 -1.13775899102109E-06"
+        rpy="0 0 0" />
+      <mass
+        value="4.76085895307258" />
+      <inertia
+        ixx="0.0553450246494476"
+        ixy="-2.94126759159225E-08"
+        ixz="5.54447936866499E-09"
+        iyy="0.0301939969422733"
+        iyz="-7.01353443938122E-08"
+        izz="0.030193759505738" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://KWR/meshes/Rear_left_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://KWR/meshes/Rear_left_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Rear_left_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.74389 -0.33137 -0.37"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Rear_left_wheel" />
+    <axis
+      xyz="-1 0 0" />
+  </joint>
+
+ <transmission name="Rear_left_wheel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Rear_left_wheel_joint">
+      <hardwareInterface> hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="Rear_left_wheel_motor">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
+<link
+    name="Nozzle_ruler">
+    <inertial>
+      <origin
+        xyz="0.247230574698654 0.752050073143058 0.0903676146440458"
+        rpy="0 0 0" />
+      <mass
+        value="21.4107259194154" />
+      <inertia
+        ixx="2.068846630878"
+        ixy="0.000770241137918507"
+        ixz="0.0330728689381973"
+        iyy="0.68639361830336"
+        iyz="0.000391561721216293"
+        izz="2.00363181774061" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://KWR/meshes/Nozzle_ruler.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://KWR/meshes/Nozzle_ruler.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Nozzle_ruler_Joint"
+    type="fixed">
+    <origin
+      xyz="0.75008 0.0036348 -0.222"
+      rpy="0 -1.2201 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="Nozzle_ruler" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Right_Ruler">
+    <inertial>
+      <origin
+        xyz="-1.11022302462516E-16 -0.00195418807822123 -0.0674953880030563"
+        rpy="0 0 0" />
+      <mass
+        value="0.108301439191116" />
+      <inertia
+        ixx="0.000444941780573456"
+        ixy="3.64040511128356E-20"
+        ixz="8.23520303899983E-20"
+        iyy="0.000635878161339009"
+        iyz="-1.15678198960764E-05"
+        izz="0.000230470088702199" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://KWR/meshes/Right_Ruler.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://KWR/meshes/Right_Ruler.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right_Ruler_Joint"
+    type="revolute">
+    <origin
+      xyz="0.53508 0.33863 -0.1966"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Right_Ruler" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="Left_Ruler">
+    <inertial>
+      <origin
+        xyz="-3.33066907387547E-16 -0.0019541880782212 -0.0674953880030562"
+        rpy="0 0 0" />
+      <mass
+        value="0.108301439191117" />
+      <inertia
+        ixx="0.000444941780573458"
+        ixy="-1.88991886763077E-20"
+        ixz="-2.30136835342204E-19"
+        iyy="0.000635878161339012"
+        iyz="-1.15678198960763E-05"
+        izz="0.0002304700887022" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://KWR/meshes/Left_Ruler.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://KWR/meshes/Left_Ruler.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Left_Ruler_Joint"
+    type="revolute">
+    <origin
+      xyz="-0.53492 0.33863 -0.1966"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Left_Ruler" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+
+<gazebo>
+ <static>false</static>
+  <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+	<robotNamespace>robot</robotNamespace>
+	<legacyModeNS>true</legacyModeNS>
+  </plugin>
+</gazebo>
+</robot>

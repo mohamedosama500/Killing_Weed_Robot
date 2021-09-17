@@ -1,0 +1,11 @@
+<launch>
+
+  <rosparam file="$(find KWR)/config/diff_drive_controller.yaml" command="load" />
+  <node name="controller_manager" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/robot" args="mobile_base_controller"/> 	
+
+<param name="robot_description" command="cat $(find KWR)/urdf/KWR.urdf" />
+<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen" >
+	<remap from="/joint_state" to="/KWR/joint_state" />
+</node>
+</launch>
+

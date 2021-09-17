@@ -1,0 +1,29 @@
+<launch>
+  <arg
+    name="model" />
+  <arg
+    name="gui"
+    default="False" />
+  <param
+    name="robot_description"
+    textfile="$(find KWR)/urdf/KWR.urdf" />
+  <param
+    name="use_gui"
+    value="$(arg gui)" />
+  <node
+    name="joint_state_publisher"
+    pkg="joint_state_publisher"
+    type="joint_state_publisher" />
+  <node
+    name="robot_state_publisher"
+    pkg="robot_state_publisher"
+    type="state_publisher" />
+  <node
+    name="rviz"
+    pkg="rviz"
+    type="rviz"
+    args="-d $(find KWR)/urdf.rviz" />
+	<rosparam file="$(find KWR)/config/diff_drive_controller.yaml" command="load">
+	
+	<node name="controller_manager" pkg="controller_manager" type="respawner" spawn="false" output="screen" args="mobile_base_controller"/>
+</launch>

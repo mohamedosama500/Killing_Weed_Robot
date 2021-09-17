@@ -1,0 +1,23 @@
+#Configuration for robot odometry
+
+frequency: 50
+
+two_d_mode: true
+
+publish_tf: false
+
+odom_frame: odom
+
+base_link_frame: base_link
+world_frame: odom
+
+
+odom0: /odom
+odom0_config: [false, false, false, false, false, true,true, true, false, false, false, ture, false, false, false]
+
+odom0_diffrential: false
+
+imu0: /imu
+imu0_config: [false, false, false, false, false, true, false, false, false, false, false, ture, false,false,false]
+
+imu0_diffrential: false
